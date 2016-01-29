@@ -10,6 +10,11 @@ jQuery(document).ready(function($) {
 			var $e = $(e),
 				id = $e.data('conditional-id'),
 				value = $e.data('conditional-value');
+				
+			if ( id.match('{#}') ) {
+				id = id.replace('{#}', $e.closest('[data-iterator]').data('iterator') );
+				$e.attr('data-conditional-id', id);
+			}
 
 			var	$element = $('[name="' + id + '"]'),
 				$parent = $e.parents('.cmb-row:first').hide();
